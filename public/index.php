@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db_connection.php'; // Include your database connection file
-
+$dbconn = pg_connect("host=$host port=$port dbname=$db user=$user password=$password");
 // Query to count the number of datasets in the database using PostgreSQL
 $sql = "SELECT COUNT(*) AS dataset_count FROM datasets";
 $result = pg_query($dbconn, $sql); // Use pg_query instead of mysqli_query
