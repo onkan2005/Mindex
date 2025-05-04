@@ -17,7 +17,6 @@ $options = [
 try {
     // Create a PDO instance and connect to the database
     $pdo = new PDO($dsn, $user, $password, $options);
-    echo "Connected successfully to Neon PostgreSQL!";
 } catch (PDOException $e) {
     // Catch any exceptions and display the error message
     echo "Connection failed: " . $e->getMessage();
