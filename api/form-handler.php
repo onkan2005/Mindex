@@ -2,6 +2,41 @@
 session_start();
 include 'db_connection.php';  // Include your database connection
 
+function uploadToDropbox($localFilePath, $dropboxPath, $accessToken) {
+    $fp = fopen($localFilePath, 'rb');
+    $size = filesize($localFilePath);
+
+    $headers = [
+        "Authorization: Bearer $accessToken",
+        "Content-Type: application/octet-stream",
+        "Dropbox-API-Arg: " . json_encode([
+            "path" => $dropboxPath,
+            "mode" => "add",
+            "autorename" => true,
+            "mute" => false
+        ])
+    ];
+
+    $ch = curl_init("https://content.dropboxapi.com/2/files/upload");
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_PUT, true);
+    curl_setopt($ch, CURLOPT_INFILE, $fp);
+    curl_setopt($ch, CURLOPT_INFILESIZE, $size);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    $error = curl_error($ch);
+    curl_close($ch);
+    fclose($fp);
+
+    if ($response === false) {
+        return ['error' => $error];
+    }
+
+    return json_decode($response, true);
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the data from the form and check if it's set
     $title = isset($_POST['title']) ? $_POST['title'] : '';
@@ -49,11 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['error_message'] = "Sorry, only CSV, Excel (XLS, XLSX), and JSON files are allowed.";
                 $uploadOk = 0;
             }
-
-            // Handle and format the start and end periods (only month and year)
-            $start_period = isset($_POST['start_period']) ? $_POST['start_period'] : '';
-            $end_period = isset($_POST['end_period']) ? $_POST['end_period'] : '';
-
             // Ensure they are in the correct format (YYYY-MM)
             if (preg_match("/^\d{4}-\d{2}$/", $start_period) && preg_match("/^\d{4}-\d{2}$/", $end_period)) {
                 // If the format is valid, store them as is
@@ -63,14 +93,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "Invalid date format. Please use the format YYYY-MM.";
                 exit;
             }
+            if ($file['error'] !== UPLOAD_ERR_OK) {
+                echo "File upload error.";
+                exit;
+            }
+            
 
             // Try to upload the file if no errors
             if ($uploadOk == 1) {
-                if (move_uploaded_file($file["tmp_name"], $target_file)) {
-                    $_SESSION['uploaded_file'] = basename($file["name"]);
-                    echo "The file " . htmlspecialchars(basename($file["name"])) . " has been uploaded.";
+                $accessToken = getenv('DROPBOX_ACCESS_TOKEN');
+                $dropboxPath = "/mangdx/" . basename($file["name"]);
+                
+                $response = uploadToDropbox($file["tmp_name"], $dropboxPath, $accessToken);
+                
+                if (isset($response['path_display'])) {
+                    $_SESSION['uploaded_file'] = $response['path_display'];
+                    $target_file = $response['path_display']; // save in DB later
+                    echo "Dropbox upload success: " . $response['path_display'];
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    echo "Dropbox upload failed: " . ($response['error_summary'] ?? json_encode($response));
+                    exit;
                 }
             }
         }
