@@ -9,11 +9,10 @@ $sql = "
     JOIN users u ON d.user_id = u.user_id
     ORDER BY d.dataset_id DESC
 ";
-if (count($result) > 0):
-
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll();
+if (count($result) > 0):
 ?>
 
 <!DOCTYPE html>
