@@ -1,7 +1,9 @@
 <?php
 session_start(); // Start the session at the top
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $targetDirectory = "uploads/";
+    // Set the target directory to the temporary directory in Vercel
+    $targetDirectory = '/tmp/';  // Using /tmp directory in Vercel
     $targetFile = $targetDirectory . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -31,13 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If everything is ok, try to upload the file
     if ($uploadOk == 1) {
-        if (!is_dir($targetDirectory)) {
-            mkdir($targetDirectory, 0777, true);
-        }
-
+        // Move the file to /tmp directory
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
             $_SESSION['success_message'] = "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
-            $_SESSION['uploaded_file'] = basename($_FILES["fileToUpload"]["name"]);
+            $_SESSION['uploaded_file'] = basename($_FILES["fileToUpload"]["name"]); // Store file name in session
             header("Location: upload_fill.php");
             exit();
         } else {
