@@ -10,7 +10,7 @@ $sql = "
     ORDER BY d.dataset_id DESC
 ";
 
-$stmt = $conn->prepare($sql);
+$stmt = $pdo->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll();
 ?>
