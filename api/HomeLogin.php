@@ -385,7 +385,6 @@ $sources_count = $row_sources['unique_sources'];
     </script>
     <?php include 'sidebar.php'; ?>
     <?php include 'category_modal.php'; // Include the modal?>
-    
     <script>
         document.addEventListener("mousemove", function (e) {
             // Create a new element for the trail dot

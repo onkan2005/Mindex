@@ -71,19 +71,14 @@
 </div>
 <script>
 function selectCategory(category) {
-    // Redirect to the page with the selected category in the URL
     window.location.href = 'datasetsbycategory.php?category=' + encodeURIComponent(category);
 }
 
-function hideModal() {
-    // Close the modal by hiding it
-    document.getElementById('categoryModal').style.display = 'none';
-}
-
-// To show the modal (you can trigger this with a button or automatically on page load)
-function showModal() {
+function showCategoryModal() {
     document.getElementById('categoryModal').style.display = 'flex';
 }
 
-// You can call `showModal()` whenever you want to display the modal.
+function hideCategoryModal() {
+    document.getElementById('categoryModal').style.display = 'none';
+}
 </script>
