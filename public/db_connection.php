@@ -5,7 +5,6 @@ $port = $_ENV['PG_PORT'];
 $db = $_ENV['PG_DB'];
 $user = $_ENV['PG_USER'];
 $password = $_ENV['PG_PASSWORD'];
-$endpoint = $_ENV['PG_ENDPOINT']; // Optional: If needed, you can remove this
 
 // Create a DSN (Data Source Name) string for PDO
 $dsn = "pgsql:host=$host;port=$port;dbname=$db";
@@ -23,4 +22,5 @@ try {
     // Catch any exceptions and display the error message
     echo "Connection failed: " . $e->getMessage();
 }
+
 ?>
