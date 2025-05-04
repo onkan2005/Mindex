@@ -271,6 +271,7 @@ session_start();
             <div class="error-message">
                 <?php echo $_SESSION['error_message']; ?>
             </div>
+            <?php unset($_SESSION['error_message']); // Unset the message after displaying it ?>
         <?php endif; ?>
         </div>
         <form id="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
