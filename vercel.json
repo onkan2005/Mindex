@@ -21,9 +21,6 @@
       "PG_USER": "neondb_owner",
       "PG_PASSWORD": "npg_CBUOaK5NVoF1",
       "PG_ENDPOINT": "ep-raspy-river-a4xechry-pooler"
-    },
-    "engines": {
-      "node": "18.x"
     }
   }
   
