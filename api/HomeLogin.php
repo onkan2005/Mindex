@@ -346,9 +346,6 @@ $sources_count = $row_sources['unique_sources'];
             function hideModal() {
                 document.getElementById("categoryModal").style.display = "none";
             }
-            document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("categoryModal").style.display = "none";
-        });
     </script>
         <main class="wrapper">
             <h1>Mangasay <br> Data Exchange </h1>
