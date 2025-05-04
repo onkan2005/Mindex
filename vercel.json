@@ -5,9 +5,16 @@
       },
       "api/login.php": {
         "runtime": "vercel-php@0.7.3"
+      },
+      "api/login_api.php": {
+        "runtime": "vercel-php@0.7.3"
       }
     },
     "routes": [
+      {
+        "src": "/login_api.php",
+        "dest": "/api/login_api.php"
+      },
       {
         "src": "/login.php",
         "dest": "/api/login.php"
