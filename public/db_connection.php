@@ -1,5 +1,5 @@
 <?php
-
+phpinfo();
 $host = $_ENV['PG_HOST'];  // Neon PostgreSQL host
 $port = $_ENV['PG_PORT'];  // Neon PostgreSQL port (usually 5432)
 $db = $_ENV['PG_DB'];  // Neon PostgreSQL database name
