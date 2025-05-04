@@ -1,6 +1,6 @@
 <?php
-session_start(); // Start the session to track the user's login state
-include('db_connection.php');
+session_start();
+include('db_connection.php'); // this should return $pdo (PDO connection)
 
 // 1. Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,38 +11,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Hash the input password using SHA-256
     $hashedPassword = hash('sha256', $pass);
 
-    // 2. Query to check if the user exists in the database
-    $sql = "SELECT * FROM users WHERE email = ?"; // Using email instead of username
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email); // 's' means string type
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // 2. Prepare and execute the query using PDO
+    $sql = "SELECT * FROM users WHERE email = :email";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['email' => $email]);
 
-    // 3. If the user exists, verify the password
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if ($hashedPassword === $row['password']) { // Compare hashed passwords
-            // Successful login
-            $_SESSION['email'] = $email; // Store email in session
-            $_SESSION['user_id'] = $row['user_id']; // Store user ID in session
-            $_SESSION['first_name'] = $row['first_name']; // Store user's name in session
-            $_SESSION['last_name'] = $row['last_name']; // Store user's name in session
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            header("Location: HomeLogin.php"); // Redirect to home page after login
-            exit();
-        } else {
-            // Invalid password
-            header("Location: login.php?error=Invalid password");
-            exit();
-        }
+    // 3. If user exists, verify password
+    if ($user && $hashedPassword === $user['password']) {
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['first_name'] = $user['first_name'];
+        $_SESSION['last_name'] = $user['last_name'];
+
+        header("Location: HomeLogin.php");
+        exit();
     } else {
-        // No user found
-        header("Location: login.php?error=No user found with that email");
+        header("Location: login.php?error=Invalid email or password");
         exit();
     }
-
-    // Close connection
-    $stmt->close();
-    $conn->close();
 }
 ?>
