@@ -11,12 +11,26 @@
       },
       "api/HomeLogin.php": {
         "runtime": "vercel-php@0.7.3"
+      },
+      "api/sidebar.php": {
+        "runtime": "vercel-php@0.7.3"
+      },
+      "api/category_modal.php": {
+        "runtime": "vercel-php@0.7.3"
       }
     },
     "routes": [
+    {
+        "src": "/sidebar.php",
+        "dest": "/api/sidebar.php"
+      },
       {
-            "src": "/HomeLogin.php",
-            "dest": "/api/HomeLogin.php"
+        "src": "/category_modal.php",
+        "dest": "/api/category_modal.php"
+      },
+      {
+        "src": "/HomeLogin.php",
+        "dest": "/api/HomeLogin.php"
       },
       {
         "src": "/login_api.php",

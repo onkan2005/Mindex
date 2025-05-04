@@ -110,7 +110,7 @@
 <div class="sidebar-overlay"></div>
 <div class="sidebar">
     <div class="profile">
-        <img src="images/avatarIconunknown.jpg" alt="Profile">
+        <img src="https://www.dropbox.com/scl/fi/qluw1qll9bauz91379zhl/avatarIconunknown.jpg?rlkey=jhrxtz3pl41wsfayiwce6gqtl&st=8peu4ufb&raw=1" alt="Profile">
          <span><?php echo isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Guest'; ?></span> 
          <span><?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'Guest'; ?></span> 
     </div>

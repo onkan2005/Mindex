@@ -309,20 +309,20 @@ $sources_count = $row_sources['unique_sources'];
 </head>
 <body>
     <video autoplay muted loop id="background-video">
-        <source src="videos/background4.mp4" type="video/mp4">
+        <source src="https://www.dropbox.com/scl/fi/3d897nz65telo6yvpn4sh/background4.mp4?rlkey=9t0ayksrok8b9cj4a3am68qzc&st=4uicfr3j&raw=1" type="video/mp4">
     </video>
 
     <div id="wrapper">
         
         <header class="navbar">
             <div class="logo">
-                <img src="images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
+                <img src="https://www.dropbox.com/scl/fi/oo9zuxjgx2dzws72biodk/mdx_logo.png?rlkey=37lcn6yg9aoqjynlelncfsl6e&st=1rxlcyms&raw=1" alt="Mangasay Data Exchange Logo">
             </div>
             <form id="searchForm" action="search_results.php" method="GET">
             <div class="search-bar">
                 <input type="text" name="search" placeholder="Search datasets" onfocus="showDropdown()" onblur="hideDropdown()">
                 <button>
-                    <img src="images/search_icon.png" alt="Search">
+                    <img src="https://www.dropbox.com/scl/fi/inemp7yqoz90spu069qwe/search_icon.png?rlkey=e3vgdi11rrhsctviypkig4bou&st=6tpoojzq&raw=1" alt="Search">
                 </button>
                 
             </div>
@@ -332,7 +332,7 @@ $sources_count = $row_sources['unique_sources'];
                 <a href="datasets.php">DATASETS</a>
                 <a onclick="showModal()" style="cursor: pointer;">CATEGORY</a>
                 <div class="profile-icon">
-                <img src="images/avatarIconunknown.jpg" alt="Profile">
+                <img src="https://www.dropbox.com/scl/fi/qluw1qll9bauz91379zhl/avatarIconunknown.jpg?rlkey=jhrxtz3pl41wsfayiwce6gqtl&st=72avrw3j&raw=1" alt="Profile">
             </div>
             </nav>
         </header>
