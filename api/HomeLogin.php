@@ -270,9 +270,6 @@ $sources_count = $row_sources['unique_sources'];
             font-size: 40px;
         }
     }
-    #category-btn{
-        display: none;
-    }
     .nav-links {
         display: flex;
         align-items: center;
@@ -332,7 +329,7 @@ $sources_count = $row_sources['unique_sources'];
             <nav class="nav-links">
                 <a href="HomeLogin.php">HOME</a>
                 <a href="datasets.php">DATASETS</a>
-                <a id="category-btn" onclick="showModal()" style="cursor: pointer;">CATEGORY</a>
+                <a id="category-btn" style="display: none;" onclick="showModal()" style="cursor: pointer;">CATEGORY</a>
                 <div class="profile-icon">
                 <img src="https://www.dropbox.com/scl/fi/qluw1qll9bauz91379zhl/avatarIconunknown.jpg?rlkey=jhrxtz3pl41wsfayiwce6gqtl&st=72avrw3j&raw=1" alt="Profile">
             </div>
