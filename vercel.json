@@ -1,15 +1,18 @@
 {
     "functions": {
-      "api/index.php": {
-        "runtime": "vercel-php@0.7.3",
-        "excludeFiles": "**/{.next,*.cache,node_modules,app,uploads,images,videos,songs}/**"
+      "api/*.php": {
+        "runtime": "vercel-php@0.7.3"
       }
     },
     "routes": [
-        { 
-            "src": "/api/index.php", 
-            "dest": "/api/index.php" 
-        }
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/public/$1"
+      }
     ],
     "env": {
       "PG_HOST": "ep-raspy-river-a4xechry-pooler.us-east-1.aws.neon.tech",
