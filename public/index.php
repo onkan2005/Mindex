@@ -380,5 +380,20 @@ $sources_count = $row_sources['unique_sources']; // Store the unique sources cou
             }, 500); // Matches the animation duration
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/db.js')
+            .then(response => response.json())
+            .then(data => {
+                // Update the stats with the data from the Node.js API
+                document.querySelector('.stat-number').innerText = data.datasetCount;
+                document.querySelector('.stat-number:nth-child(2)').innerText = data.uniqueSources;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    });
+</script>
+
 </body>
 </html>
