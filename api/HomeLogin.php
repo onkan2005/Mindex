@@ -337,17 +337,6 @@ $sources_count = $row_sources['unique_sources'];
             </div>
             </nav>
         </header>
-        <?php include 'category_modal.php'; // Include the modal?>
-        <script>
-            function showModal() {
-                document.getElementById("categoryModal").style.display = "flex";
-            }
-            function hideModal() {
-                document.getElementById("categoryModal").style.display = "none";
-            }
-            document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("categoryModal").style.display = "none";
-        });
     </script>
         <main class="wrapper">
             <h1>Mangasay <br> Data Exchange </h1>
@@ -414,7 +403,17 @@ $sources_count = $row_sources['unique_sources'];
         });
     </script>
     <script src="search.js"></script>
-
+    <?php include 'category_modal.php'; // Include the modal?>
+        <script>
+            function showModal() {
+                document.getElementById("categoryModal").style.display = "flex";
+            }
+            function hideModal() {
+                document.getElementById("categoryModal").style.display = "none";
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("categoryModal").style.display = "none";
+        });
 
 </body>
 </html>
