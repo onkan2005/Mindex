@@ -10,7 +10,9 @@ $sql = "
     ORDER BY d.dataset_id DESC
 ";
 
-$result = mysqli_query($conn, $sql);
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>

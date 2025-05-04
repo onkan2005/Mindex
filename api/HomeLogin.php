@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'db_connection.php'; // Include your database connection file
-echo isset($_SESSION['first_name']);
 // Query to count the number of datasets in the database
 $stmt = $pdo->query("SELECT COUNT(*) AS dataset_count FROM datasets");
 $row = $stmt->fetch(PDO::FETCH_ASSOC);

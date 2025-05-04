@@ -20,9 +20,16 @@
       },
       "api/db_connection.php": {
         "runtime": "vercel-php@0.7.3"
+      },
+      "api/datasets.php": {
+        "runtime": "vercel-php@0.7.3"
       }
     },
     "routes": [
+      {
+            "src": "/datasets.php",
+            "dest": "/api/datasets.php"
+      },
       {
         "src": "/db_connection.php",
         "dest": "/api/db_connection.php"
