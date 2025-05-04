@@ -9,6 +9,7 @@ $sql = "
     JOIN users u ON d.user_id = u.user_id
     ORDER BY d.dataset_id DESC
 ";
+if (count($result) > 0):
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -288,28 +289,33 @@ $result = $stmt->fetchAll();
     <a href="uploadselection.php" id="add-data-btn" class="add-data-btn">ADD DATA</a>
 </div>
 <div id="wrapper">
-        <div class="dataset-grid">
-            <?php if (mysqli_num_rows($result) > 0): ?>
-                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <div class="dataset-card">
-                        <div class="dataset-title">
-                            <a href="my_uploaded_dataset.php?title=<?= urlencode($row['title']) ?>">
-                                <?= htmlspecialchars($row['title']) ?>
-                            </a>
-                        </div>
-                        <div class="dataset-description">
-                            <?= htmlspecialchars(mb_strimwidth($row['description'], 0, 255, '...')) ?>
-                        </div>
-                        <div class="dataset-uploader">
-                            <br><br><br>
-                            Uploaded by: <?= htmlspecialchars($row['first_name'] . ' ' . $row['last_name']) ?>
-                        </div>
-                        <div class="dataset-download">
-                        <a href="<?php echo htmlspecialchars($row['file_path']); ?>" download class="download-btn">Download</a>
-                        </div>
-                    </div>
-                <?php endwhile; ?>
-            <?php endif; ?>
+<div class="dataset-grid">
+    <?php foreach ($result as $row): ?>
+        <div class="dataset-card">
+            <div class="dataset-title">
+                <a href="my_uploaded_dataset.php?title=<?= urlencode($row['title']) ?>">
+                    <?= htmlspecialchars($row['title']) ?>
+                </a>
+            </div>
+            <div class="dataset-description">
+                <?= htmlspecialchars(mb_strimwidth($row['description'], 0, 255, '...')) ?>
+            </div>
+            <div class="dataset-uploader">
+                <br><br><br>
+                Uploaded by: <?= htmlspecialchars($row['first_name'] . ' ' . $row['last_name']) ?>
+            </div>
+            <div class="dataset-download">
+                <a href="<?= htmlspecialchars($row['file_path']); ?>" download class="download-btn">Download</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+<?php else: ?>
+    <div class="no-datasets">
+        <img src="images/no-found1.png" alt="No data" class="no-found-img">
+        <p>No dataset found.</p>
+    </div>
+<?php endif; ?>
         </div>
         
         <!-- No datasets found message outside of the grid -->
