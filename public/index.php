@@ -2,16 +2,24 @@
 session_start();
 include 'db_connection.php'; // Include your database connection file
 
-// Query to count the number of datasets in the database using PostgreSQL
+// Create a PDO instance for PostgreSQL connection
+try {
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$db", $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+// Query to count the number of datasets in the database
 $sql = "SELECT COUNT(*) AS dataset_count FROM datasets";
-$result = pg_query($dbconn, $sql); // Use pg_query instead of mysqli_query
-$row = pg_fetch_assoc($result); // Use pg_fetch_assoc for fetching PostgreSQL results
+$stmt = $pdo->query($sql);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 $dataset_count = $row['dataset_count']; // Store the dataset count
 
 // Query to count the number of unique users (distinct user_id) in the datasets table
 $sql_sources = "SELECT COUNT(DISTINCT user_id) AS unique_sources FROM datasets";
-$result_sources = pg_query($dbconn, $sql_sources); // Use pg_query for PostgreSQL
-$row_sources = pg_fetch_assoc($result_sources); // Use pg_fetch_assoc for fetching results
+$stmt_sources = $pdo->query($sql_sources);
+$row_sources = $stmt_sources->fetch(PDO::FETCH_ASSOC);
 $sources_count = $row_sources['unique_sources']; // Store the unique sources count
 ?>
 <script src="https://kit.fontawesome.com/2c68a433da.js" crossorigin="anonymous"></script>
