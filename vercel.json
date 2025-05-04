@@ -6,7 +6,10 @@
       }
     },
     "routes": [
-      { "src": "/(.*)", "dest": "/api/index.php" }
+        { 
+            "src": "/api/index.php", 
+            "dest": "/api/index.php" 
+        }
     ],
     "env": {
       "PG_HOST": "ep-raspy-river-a4xechry-pooler.us-east-1.aws.neon.tech",
