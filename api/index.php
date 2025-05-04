@@ -1,4 +1,3 @@
 <?php
-header("Location: /MindanaoDataExchange.php");
-exit();
+require __DIR__ . '/../public/index.php';
 ?>
