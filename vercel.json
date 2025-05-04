@@ -15,8 +15,8 @@
     },
     "routes": [
       {
-            "src": "/homelogin.php",
-            "dest": "/api/homelogin.php"
+            "src": "/HomeLogin.php",
+            "dest": "/api/HomeLogin.php"
       },
       {
         "src": "/login_api.php",
