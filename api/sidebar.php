@@ -130,7 +130,7 @@
     </a>
     
     <a href="#" class="sign-out">
-        <img src="images/signout-icon.png" alt="Sign Out">
+        <img src="https://www.dropbox.com/scl/fi/n0gs88yc7i6zdvtmmcg7d/signout-icon.png?rlkey=1o75a0y3k45520jdlk6p5pgaq&st=1c3joxcj&raw=1" alt="Sign Out">
         Sign Out
     </a>
 </div>
@@ -146,7 +146,7 @@ document.querySelector('.sidebar-overlay').addEventListener('click', function() 
     document.querySelector('.sidebar-overlay').classList.remove('active');
 });
 document.querySelector('.sign-out').addEventListener('click', function() {
-    window.location.href = 'mindanaodataexchange.php';
+    window.location.href = 'index.php';
 });
 </script>
 
