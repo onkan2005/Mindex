@@ -230,7 +230,7 @@ $sources_count = $row_sources['unique_sources'];
         background-color: #a0b6f3; /* Darker blue when hovered */
         transform: scale(1.1); /* Slightly increase size on hover */
     }
-    }
+    
     .upload-btn p {
         font-size: 16px;
         color: black;
