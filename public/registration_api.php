@@ -4,7 +4,10 @@ include('db_connection.php'); // Include your DB connection
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require_once 'phpmailer/PHPMailer.php';
+require_once 'phpmailer/SMTP.php';
+require_once 'phpmailer/Exception.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $firstName = $_POST['firstname'];
