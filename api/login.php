@@ -173,11 +173,11 @@ if (isset($_GET['error'])) {
 <div id="flashbang"></div>
 
     <video autoplay muted loop id="background-video">
-        <source src="videos/background.mp4" type="video/mp4">
+        <source src="https://www.dropbox.com/scl/fi/3d897nz65telo6yvpn4sh/background4.mp4?rlkey=9t0ayksrok8b9cj4a3am68qzc&st=vd8oprwb&raw=1" type="video/mp4">
     </video>
     <header class="navbar">
         <div class="logo">
-            <img src="images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
+            <img src="https://www.dropbox.com/scl/fi/oo9zuxjgx2dzws72biodk/mdx_logo.png?rlkey=37lcn6yg9aoqjynlelncfsl6e&st=aabmd6fm&raw=1" alt="Mangasay Data Exchange Logo">
         </div>
         <nav class="nav-links">
             <a href="MindanaoDataExchange.php">Home</a>
@@ -188,7 +188,7 @@ if (isset($_GET['error'])) {
     <div class="container">
         <div class="login-container">
             <div class="logo-container">
-                <img src="images/mdx_logo.png" alt="MDX Logo">
+                <img src="https://www.dropbox.com/scl/fi/oo9zuxjgx2dzws72biodk/mdx_logo.png?rlkey=37lcn6yg9aoqjynlelncfsl6e&st=aabmd6fm&raw=1" alt="MDX Logo">
             </div>
             
             <?php if (isset($error_message)): ?>
@@ -198,11 +198,11 @@ if (isset($_GET['error'])) {
             <?php endif; ?>
             <form action="login_api.php" method="POST">
                 <div class="input-container">
-                    <img src="images/user_icon.png" alt="User Icon">
+                    <img src="https://www.dropbox.com/scl/fi/837zdo2otmaa71xevv4lz/user_icon.png?rlkey=fh56q387c6mu3tan3jcn9cg9x&st=gyqwtb8u&raw=1" alt="User Icon">
                     <input type="text" name="email" placeholder="Email address" required>
                 </div>
                 <div class="input-container">
-                    <img src="images/password_icon.png" alt="Password Icon">
+                    <img src="https://www.dropbox.com/scl/fi/y9iz2cp0h5biu368m8zbj/password_icon.png?rlkey=11dgj6rb8iy1kx9kjj0ndcol4&st=0uc0qqpi&raw=1" alt="Password Icon">
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <a href="#" class="forgot-password">Forgot password?</a>
