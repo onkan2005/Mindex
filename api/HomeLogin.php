@@ -337,7 +337,6 @@ $sources_count = $row_sources['unique_sources'];
             </div>
             </nav>
         </header>
-    </script>
         <main class="wrapper">
             <h1>Mangasay <br> Data Exchange </h1>
             <p id="tagline">Discover, Share, and Transform Data Seamlessly.</p>
@@ -414,6 +413,7 @@ $sources_count = $row_sources['unique_sources'];
             document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("categoryModal").style.display = "none";
         });
+    </script>
 
 </body>
 </html>
