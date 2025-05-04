@@ -3,15 +3,14 @@ session_start();
 include 'db_connection.php'; // Include your database connection file
 
 // Query to count the number of datasets in the database
-$sql = "SELECT COUNT(*) AS dataset_count FROM datasets";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$dataset_count = $row['dataset_count']; // Store the dataset count
+$stmt = $pdo->query("SELECT COUNT(*) AS dataset_count FROM datasets");
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$dataset_count = $row['dataset_count'];
+
 // Query to count the number of unique users (distinct user_id) in the datasets table
-$sql_sources = "SELECT COUNT(DISTINCT user_id) AS unique_sources FROM datasets";
-$result_sources = mysqli_query($conn, $sql_sources);
-$row_sources = mysqli_fetch_assoc($result_sources);
-$sources_count = $row_sources['unique_sources']; // Store the unique sources count
+$stmt_sources = $pdo->query("SELECT COUNT(DISTINCT user_id) AS unique_sources FROM datasets");
+$row_sources = $stmt_sources->fetch(PDO::FETCH_ASSOC);
+$sources_count = $row_sources['unique_sources'];
 
 
 ?>
