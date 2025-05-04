@@ -238,8 +238,8 @@ session_start();
 </head>
 <body>
 <video autoplay muted loop id="background-video">
-        <source src="https://www.dropbox.com/scl/fi/3d897nz65telo6yvpn4sh/background4.mp4?rlkey=9t0ayksrok8b9cj4a3am68qzc&st=alh6j6od&raw=1" type="video/mp4">
-    </video>
+    <source src="https://www.dropbox.com/scl/fi/3d897nz65telo6yvpn4sh/background4.mp4?rlkey=9t0ayksrok8b9cj4a3am68qzc&st=alh6j6od&raw=1" type="video/mp4">
+</video>
 
 <div id="wrapper">
     <header class="navbar">
@@ -252,9 +252,8 @@ session_start();
                 <button>
                     <img src="https://www.dropbox.com/scl/fi/inemp7yqoz90spu069qwe/search_icon.png?rlkey=e3vgdi11rrhsctviypkig4bou&st=s00gg8bu&raw=1" alt="Search">
                 </button>
-                
             </div>
-            </form>
+        </form>
         <nav class="nav-links">
             <a href="HomeLogin.php">HOME</a>
             <a href="datasets.php">DATASETS</a>
