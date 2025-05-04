@@ -335,7 +335,7 @@ $sources_count = $row_sources['unique_sources'];
             </div>
             </nav>
         </header>
-    
+        <?php include 'category_modal.php'; // Include the modal?>
     <script>
         function showModal() {
             document.getElementById("categoryModal").style.display = "flex";
@@ -384,7 +384,7 @@ $sources_count = $row_sources['unique_sources'];
     <script src="https://kit.fontawesome.com/2c68a433da.js" crossorigin="anonymous">  
     </script>
     <?php include 'sidebar.php'; ?>
-    <?php include 'category_modal.php'; // Include the modal?>
+
     <script>
         document.addEventListener("mousemove", function (e) {
             // Create a new element for the trail dot
