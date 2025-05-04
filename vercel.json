@@ -14,10 +14,9 @@
         "dest": "/api/index.php" 
       },
       {
-        "routes": [
-          { "src": "/login.php", "dest": "/login.php" },
-          { "src": "/(.*)", "dest": "/api/index.php" }
-        ]
+      
+          "src": "/login.php", "dest": "/login.php",
+           "src": "/(.*)", "dest": "/api/index.php" 
       }  
     ],
     "env": {
