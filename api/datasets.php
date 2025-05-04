@@ -265,12 +265,12 @@ if (count($result) > 0):
 </head>
 <body>
 <video autoplay muted loop id="background-video">
-        <source src="videos/background4.mp4" type="video/mp4">
+        <source src="https://www.dropbox.com/scl/fi/3d897nz65telo6yvpn4sh/background4.mp4?rlkey=9t0ayksrok8b9cj4a3am68qzc&st=vuvjas5z&raw=1" type="video/mp4">
     </video>
 <div class="container">
 <header class="navbar">
         <div class="logo">
-            <img src="images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
+            <img src="https://www.dropbox.com/scl/fi/oo9zuxjgx2dzws72biodk/mdx_logo.png?rlkey=37lcn6yg9aoqjynlelncfsl6e&st=w7xguqqv&raw=1" alt="Mangasay Data Exchange Logo">
             <h2>Available Datasets</h2>
         </div>
         <nav class="nav-links">
@@ -281,7 +281,7 @@ if (count($result) > 0):
         <div class="search-bar">
         <input type="text" name="search" placeholder="Search datasets" onfocus="showDropdown()" onblur="hideDropdown()">
         <button>
-            <img src="images/search_icon.png" alt="Search">
+            <img src="https://www.dropbox.com/scl/fi/inemp7yqoz90spu069qwe/search_icon.png?rlkey=e3vgdi11rrhsctviypkig4bou&st=nbr6vy4l&raw=1" alt="Search">
         </button>
     </form>
     <a id="category-btn" onclick="showModal()" style="cursor: pointer;">CATEGORY</a>
@@ -315,17 +315,6 @@ if (count($result) > 0):
         <p>No dataset found.</p>
     </div>
 <?php endif; ?>
-        </div>
-        
-        <!-- No datasets found message outside of the grid -->
-        <?php if (mysqli_num_rows($result) == 0): ?>
-            <div class="no-datasets">
-                <img src="images/no-found1.png" alt="No data" class="no-found-img">
-                <p>No dataset found.</p>
-            </div>
-        <?php endif; ?>
-    </div>
-
         </div>
         <br><br>
 </div>
