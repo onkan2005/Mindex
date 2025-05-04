@@ -1,7 +1,4 @@
 <?php
-// Set the session save path to /tmp (Vercel's writable directory) before session_start()
-ini_set('session.save_path', '/tmp'); // Set session save path
-ini_set('session.save_handler', 'files'); // Use file-based session handler
 session_start();
 include('db_connection.php'); // this should return $pdo (PDO connection)
 

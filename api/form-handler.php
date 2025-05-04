@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $file = isset($_FILES['fileToUpload']) ? $_FILES['fileToUpload'] : null;
     $uploaded_file_name = isset($_POST['uploaded_file']) ? $_POST['uploaded_file'] : '';
+    
     // Check if user is logged in
     if (!isset($_SESSION['user_id'])) {
         echo "You must be logged in to upload a dataset.";
@@ -45,22 +46,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Allow only certain file formats (CSV, XLS, XLSX, JSON)
             if (!in_array($fileType, $allowedTypes)) {
-               $_SESSION['error_message'] = "Sorry, only CSV, Excel (XLS, XLSX), and JSON files are allowed.";
+                $_SESSION['error_message'] = "Sorry, only CSV, Excel (XLS, XLSX), and JSON files are allowed.";
                 $uploadOk = 0;
             }
-// Handle and format the start and end periods (only month and year)
-$start_period = isset($_POST['start_period']) ? $_POST['start_period'] : '';
-$end_period = isset($_POST['end_period']) ? $_POST['end_period'] : '';
 
-// Ensure they are in the correct format (YYYY-MM)
-if (preg_match("/^\d{4}-\d{2}$/", $start_period) && preg_match("/^\d{4}-\d{2}$/", $end_period)) {
-    // If the format is valid, store them as is
-    $start_date = $start_period; // Store as YYYY-MM
-    $end_date = $end_period;     // Store as YYYY-MM
-} else {
-    echo "Invalid date format. Please use the format YYYY-MM.";
-    exit;
-}
+            // Handle and format the start and end periods (only month and year)
+            $start_period = isset($_POST['start_period']) ? $_POST['start_period'] : '';
+            $end_period = isset($_POST['end_period']) ? $_POST['end_period'] : '';
+
+            // Ensure they are in the correct format (YYYY-MM)
+            if (preg_match("/^\d{4}-\d{2}$/", $start_period) && preg_match("/^\d{4}-\d{2}$/", $end_period)) {
+                // If the format is valid, store them as is
+                $start_date = $start_period; // Store as YYYY-MM
+                $end_date = $end_period;     // Store as YYYY-MM
+            } else {
+                echo "Invalid date format. Please use the format YYYY-MM.";
+                exit;
+            }
+
             // Try to upload the file if no errors
             if ($uploadOk == 1) {
                 if (move_uploaded_file($file["tmp_name"], $target_file)) {
@@ -72,17 +75,31 @@ if (preg_match("/^\d{4}-\d{2}$/", $start_period) && preg_match("/^\d{4}-\d{2}$/"
             }
         }
 
-
-        // Insert the form data into the database
+        // Prepare and execute the SQL statement using PDO for PostgreSQL
         $sql = "INSERT INTO datasets (title, description, visibility, category, start_period, end_period, source, location, link, file_path, user_id)
-                VALUES ('$title', '$description', '$visibility', '$category', '$start_period', '$end_period', '$source', '$location', '$link', '$target_file', '$user_id')";
+                VALUES (:title, :description, :visibility, :category, :start_period, :end_period, :source, :location, :link, :file_path, :user_id)";
+        
+        $stmt = $pdo->prepare($sql);
+        
+        // Bind the parameters
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':visibility', $visibility);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':start_period', $start_period);
+        $stmt->bindParam(':end_period', $end_period);
+        $stmt->bindParam(':source', $source);
+        $stmt->bindParam(':location', $location);
+        $stmt->bindParam(':link', $link);
+        $stmt->bindParam(':file_path', $target_file);
+        $stmt->bindParam(':user_id', $user_id);
 
-        if (mysqli_query($conn, $sql)) {
+        if ($stmt->execute()) {
             // Redirect to a success page or a confirmation message
             header("Location: dataset_success.php");
             exit();
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            echo "Error: Could not execute the query.";
         }
     }
 }

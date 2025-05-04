@@ -122,7 +122,7 @@ session_start();
 <body>
     <header class="navbar">
         <div class="logo">
-            <img src="images/mdx_logo.png" alt="MDX Logo">
+            <img src="https://www.dropbox.com/scl/fi/oo9zuxjgx2dzws72biodk/mdx_logo.png?rlkey=37lcn6yg9aoqjynlelncfsl6e&st=wfp40tw2&raw=1" alt="MDX Logo">
         </div>
     </header>
 
@@ -139,20 +139,20 @@ session_start();
                 </div>
                 <div class="account-individual">
                     <h2><strong>Normal MDX account</strong></h2>
-                    <img src="images/user_icon.png" alt="User Icon">
+                    <img src="https://www.dropbox.com/scl/fi/837zdo2otmaa71xevv4lz/user_icon.png?rlkey=fh56q387c6mu3tan3jcn9cg9x&st=ivx7rv4y&raw=1" alt="User Icon">
                     <br>
                     <a href="registrationdetailsnoorg.php">Sign Up</a>
-                    <p id="checkmark"><img src="images/check.png"></p>
-                    <p id="checkmark"><img src="images/check.png"></p>
+                    <p id="checkmark"><img src="https://www.dropbox.com/scl/fi/vdmfoxhend8w4wyn60oha/check.png?rlkey=jsz4kk26avb6ejol3y01ox6ct&st=vdi35ebx&raw=1"></p>
+                    <p id="checkmark"><img src="https://www.dropbox.com/scl/fi/vdmfoxhend8w4wyn60oha/check.png?rlkey=jsz4kk26avb6ejol3y01ox6ct&st=vdi35ebx&raw=1"></p>
                 </div>
                 <div class="account-org">
                     <h2><strong>With organization</strong></h2>
-                    <img src="images/user_icon.png" alt="User Icon">
+                    <img src="https://www.dropbox.com/scl/fi/837zdo2otmaa71xevv4lz/user_icon.png?rlkey=fh56q387c6mu3tan3jcn9cg9x&st=ivx7rv4y&raw=1" alt="User Icon">
                     <br>
                     <a href="registrationdetailswithorg.php">Sign Up</a>
-                    <p id="checkmark"><img src="images/check.png"></p>
-                    <p id="checkmark"><img src="images/check.png"></p>
-                    <p id="checkmark"><img src="images/check.png"></p>
+                    <p id="checkmark"><img src="https://www.dropbox.com/scl/fi/vdmfoxhend8w4wyn60oha/check.png?rlkey=jsz4kk26avb6ejol3y01ox6ct&st=vdi35ebx&raw=1"></p>
+                    <p id="checkmark"><img src="https://www.dropbox.com/scl/fi/vdmfoxhend8w4wyn60oha/check.png?rlkey=jsz4kk26avb6ejol3y01ox6ct&st=vdi35ebx&raw=1"></p>
+                    <p id="checkmark"><img src="https://www.dropbox.com/scl/fi/vdmfoxhend8w4wyn60oha/check.png?rlkey=jsz4kk26avb6ejol3y01ox6ct&st=vdi35ebx&raw=1"></p>
                 </div>
             </div>
             

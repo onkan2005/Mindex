@@ -37,15 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
             $_SESSION['success_message'] = "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
-            $_SESSION['uploaded_file'] = basename($_FILES["fileToUpload"]["name"]); // Store file name in session
-            // Redirect to success page after successful upload
+            $_SESSION['uploaded_file'] = basename($_FILES["fileToUpload"]["name"]);
             header("Location: upload_fill.php");
             exit();
         } else {
             $_SESSION['error_message'] = "Sorry, there was an error uploading your file.";
         }
     } else {
-        // If upload failed, redirect to upload page with error
         header("Location: uploadselection.php");
         exit();
     }

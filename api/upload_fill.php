@@ -136,7 +136,7 @@ session_start();
         border: none;
         cursor: pointer;
     }
-    .close-btn {
+    .close-btn1 {
         font-size: 24px;
         cursor: pointer;
     }
@@ -256,27 +256,6 @@ session_start();
         background: #ccc;
         margin-top: 20px;
     }
-    .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 50%;
-            max-width: 600px;
-            text-align: center;
-        }
         .category-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -293,7 +272,7 @@ session_start();
         .category-grid div:hover {
             background: #bbdefb;
         }
-        .close-btn {
+        .close-btn1 {
             background: red;
             color: white;
             padding: 5px 10px;
@@ -313,12 +292,12 @@ session_start();
     <div id="wrapper">
         <header class="navbar">
             <div class="logo">
-                <img src="images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
+                <img src="https://www.dropbox.com/scl/fi/oo9zuxjgx2dzws72biodk/mdx_logo.png?rlkey=37lcn6yg9aoqjynlelncfsl6e&st=pp5ls0ab&raw=1" alt="Mangasay Data Exchange Logo">
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Search datasets">
                 <button>
-                    <img src="images/search_icon.png" alt="Search">
+                    <img src="https://www.dropbox.com/scl/fi/inemp7yqoz90spu069qwe/search_icon.png?rlkey=e3vgdi11rrhsctviypkig4bou&st=bk8odihi&raw=1" alt="Search">
                 </button>
             </div>
             <nav class="nav-links">
@@ -326,44 +305,14 @@ session_start();
             <a href="datasets.php">DATASETS</a>
             <a onclick="showModal()" style="cursor: pointer;">CATEGORY</a>
             <div class="profile-icon">
-                <img src="images/avatarIconunknown.jpg" alt="Profile">
+                <img src="https://www.dropbox.com/scl/fi/qluw1qll9bauz91379zhl/avatarIconunknown.jpg?rlkey=jhrxtz3pl41wsfayiwce6gqtl&st=5exd0bix&raw=1" alt="Profile">
             </div>
             </nav>
         </header>
-        <div class="modal" id="categoryModal">
-        <div class="modal-content">
-            <h2>Select a Category</h2>
-            <div class="category-grid">
-                <div>Business & Finance</div>
-                <div>Education & Academia</div>
-                <div>Science & Research</div>
-                <div>Agriculture & Environment</div>
-                <div>Technology & IT</div>
-                <div>Government & Public Data</div>
-                <div>Geography & Mapping</div>
-                <div>Commerce & Consumer Data</div>
-                <div>Social & Media</div>
-                <div>Health & Medicine</div>
-            </div>
-            <button class="close-btn" onclick="hideModal()">Close</button>
-        </div>
-    </div>
-    
-    <script>
-        function showModal() {
-            document.getElementById("categoryModal").style.display = "flex";
-        }
-        function hideModal() {
-            document.getElementById("categoryModal").style.display = "none";
-        }
-        document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("categoryModal").style.display = "none";
-    });
-    </script>
         <div class="container">
         <div class="header">
     <div class="header-left">
-        <span class="close-btn">&times;</span>
+        <span class="close-btn1">&times;</span>
         <h2>UPLOAD DATASET</h2>
     </div>
     <button type="button" id="create-btn" class="create-btn">Create</button>
@@ -465,5 +414,17 @@ session_start();
         form.submit();
     });
 </script>
+<?php include 'category_modal.php'; // Include the modal?>
+<script>
+        function showModal() {
+            document.getElementById("categoryModal").style.display = "flex";
+        }
+        function hideModal() {
+            document.getElementById("categoryModal").style.display = "none";
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("categoryModal").style.display = "none";
+    });
+    </script>
 </body>
 </html>

@@ -11,8 +11,7 @@ $sql = "
 ";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
-$result = $stmt->fetchAll();
-if (count($result) > 0):
+$datasets = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -288,36 +287,37 @@ if (count($result) > 0):
     <a href="uploadselection.php" id="add-data-btn" class="add-data-btn">ADD DATA</a>
 </div>
 <div id="wrapper">
-<div class="dataset-grid">
-    <?php foreach ($result as $row): ?>
-        <div class="dataset-card">
-            <div class="dataset-title">
-                <a href="my_uploaded_dataset.php?title=<?= urlencode($row['title']) ?>">
-                    <?= htmlspecialchars($row['title']) ?>
-                </a>
-            </div>
-            <div class="dataset-description">
-                <?= htmlspecialchars(mb_strimwidth($row['description'], 0, 255, '...')) ?>
-            </div>
-            <div class="dataset-uploader">
-                <br><br><br>
-                Uploaded by: <?= htmlspecialchars($row['first_name'] . ' ' . $row['last_name']) ?>
-            </div>
-            <div class="dataset-download">
-                <a href="<?= htmlspecialchars($row['file_path']); ?>" download class="download-btn">Download</a>
-            </div>
+    <?php if (count($datasets) > 0): ?>
+        <div class="dataset-grid">
+            <?php foreach ($datasets as $row): ?>
+                <div class="dataset-card">
+                    <div class="dataset-title">
+                        <a href="my_uploaded_dataset.php?title=<?= urlencode($row['title']) ?>">
+                            <?= htmlspecialchars($row['title']) ?>
+                        </a>
+                    </div>
+                    <div class="dataset-description">
+                        <?= htmlspecialchars(mb_strimwidth($row['description'], 0, 255, '...')) ?>
+                    </div>
+                    <div class="dataset-uploader">
+                        <br><br><br>
+                        Uploaded by: <?= htmlspecialchars($row['first_name'] . ' ' . $row['last_name']) ?>
+                    </div>
+                    <div class="dataset-download">
+                        <a href="<?= htmlspecialchars($row['file_path']); ?>" download class="download-btn">Download</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
-</div>
-<?php else: ?>
-    <div class="no-datasets">
-        <img src="images/no-found1.png" alt="No data" class="no-found-img">
-        <p>No dataset found.</p>
-    </div>
-<?php endif; ?>
+    <?php else: ?>
+        <div class="no-datasets">
+            <img src="https://www.dropbox.com/scl/fi/wju9uwlqdka1g0bsgym32/no-found1.png?rlkey=w0q56kz4cptxv6fcgn4rkq16f&st=yi1017bp&raw=1" alt="No data" class="no-found-img">
+            <p>No dataset found.</p>
         </div>
-        <br><br>
+    <?php endif; ?>
+    <br><br>
 </div>
+
 <?php include 'category_modal.php'; // Include the modal?>
 <script>
         function showModal() {

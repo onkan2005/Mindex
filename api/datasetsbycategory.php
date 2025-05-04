@@ -1,23 +1,37 @@
 <?php
 session_start();
 include 'db_connection.php';
-// Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
-    echo "You must be logged in to view your datasets.";
-    exit;
-}
 
-$user_id = $_SESSION['user_id'];  // Get logged-in user's ID
+// Get the category from the query string, if available
+$category = isset($_GET['category']) ? $_GET['category'] : null;
 
-// Fetch all datasets (title and description only)
+// Start building the SQL query
 $sql = "
     SELECT d.title, d.description, u.first_name, u.last_name
     FROM datasets d
     JOIN users u ON d.user_id = u.user_id
-    WHERE d.user_id = '$user_id'
-    ORDER BY d.title ASC
 ";
-$result = mysqli_query($conn, $sql);
+
+// Add a WHERE clause if the category is provided
+if ($category) {
+    $sql .= " WHERE d.category = :category";
+}
+
+$sql .= " ORDER BY d.user_id DESC";
+
+// Prepare the statement
+$stmt = $pdo->prepare($sql);
+
+// Bind the category parameter if it's provided
+if ($category) {
+    $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+}
+
+// Execute the query
+$stmt->execute();
+
+// Fetch all results
+$datasets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -86,6 +100,7 @@ $result = mysqli_query($conn, $sql);
             margin: 5px auto;
             padding: 0 20px;
         }
+
         .dataset-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
@@ -251,14 +266,16 @@ $result = mysqli_query($conn, $sql);
 </head>
 <body>
 <video autoplay muted loop id="background-video">
-        <source src="videos/background4.mp4" type="video/mp4">
+        <source src="https://www.dropbox.com/scl/fi/3d897nz65telo6yvpn4sh/background4.mp4?rlkey=9t0ayksrok8b9cj4a3am68qzc&st=44wgkyot&raw=1" type="video/mp4">
     </video>
-
 <div class="container">
 <header class="navbar">
         <div class="logo">
-            <img src="images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
-            <h2>My Datasets</h2>
+            <img src="https://www.dropbox.com/scl/fi/oo9zuxjgx2dzws72biodk/mdx_logo.png?rlkey=37lcn6yg9aoqjynlelncfsl6e&st=kbn87kfc&raw=1" alt="Mangasay Data Exchange Logo">
+            <h2>
+                <?= $category ? 'Category: ' . htmlspecialchars($category) : 'All Datasets' ?>
+            </h2>
+
         </div>
         <nav class="nav-links">
             <a href="HomeLogin.php">HOME</a>
@@ -268,45 +285,40 @@ $result = mysqli_query($conn, $sql);
         <div class="search-bar">
         <input type="text" name="search" placeholder="Search datasets" onfocus="showDropdown()" onblur="hideDropdown()">
         <button>
-            <img src="images/search_icon.png" alt="Search">
+            <img src="https://www.dropbox.com/scl/fi/inemp7yqoz90spu069qwe/search_icon.png?rlkey=e3vgdi11rrhsctviypkig4bou&st=le0rjden&raw=1" alt="Search">
         </button>
     </form>
     <a id="category-btn" onclick="showModal()" style="cursor: pointer;">CATEGORY</a>
     <a href="uploadselection.php" id="add-data-btn" class="add-data-btn">ADD DATA</a>
 </div>
-<div id="wrapper">
-        <div class="dataset-grid">
-            <?php if (mysqli_num_rows($result) > 0): ?>
-                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <div class="dataset-card">
-                        <div class="dataset-title">
-                            <a href="my_uploaded_dataset.php?title=<?= urlencode($row['title']) ?>">
-                                <?= htmlspecialchars($row['title']) ?>
-                            </a>
-                        </div>
-                        <div class="dataset-description">
-                            <?= htmlspecialchars(mb_strimwidth($row['description'], 0, 255, '...')) ?>
-                        </div>
-                        <div class="dataset-uploader">
-                            <br><br><br>
-                            Uploaded by: <?= htmlspecialchars($row['first_name'] . ' ' . $row['last_name']) ?>
-                        </div>
-                    </div>
-                <?php endwhile; ?>
-            <?php endif; ?>
-        </div>
-
-        <!-- No datasets found message outside of the grid -->
-        <?php if (mysqli_num_rows($result) == 0): ?>
-            <div class="no-datasets">
-                <img src="images/no-found1.png" alt="No data" class="no-found-img">
-                <p>No dataset found.</p>
+    <div id="wrapper">
+    <div class="dataset-grid">
+    <?php if (count($datasets) > 0): ?>
+        <?php foreach ($datasets as $row): ?>
+            <div class="dataset-card">
+                <div class="dataset-title">
+                    <a href="my_uploaded_dataset.php?title=<?= urlencode($row['title']) ?>">
+                        <?= htmlspecialchars($row['title']) ?>
+                    </a>
+                </div>
+                <div class="dataset-description">
+                    <?= htmlspecialchars(mb_strimwidth($row['description'], 0, 255, '...')) ?>
+                </div>
+                <div class="dataset-uploader">
+                    <br><br><br>
+                    Uploaded by: <?= htmlspecialchars($row['first_name'] . ' ' . $row['last_name']) ?>
+                </div>
+                <div class="dataset-download">
+                    <a href="<?= htmlspecialchars($row['file_path']); ?>" download class="download-btn">Download</a>
+                </div>
             </div>
-        <?php endif; ?>
-    </div>
-
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="no-datasets">
+            <img src="https://www.dropbox.com/scl/fi/wju9uwlqdka1g0bsgym32/no-found1.png?rlkey=w0q56kz4cptxv6fcgn4rkq16f&st=e00l3qu3&raw=1" alt="No data" class="no-found-img">
+            <p>No dataset found.</p>
         </div>
-        <br><br>
+    <?php endif; ?>
 </div>
 <?php include 'category_modal.php'; // Include the modal?>
 <script>

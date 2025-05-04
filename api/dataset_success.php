@@ -26,6 +26,7 @@
       width: 100%;
       z-index: 2;
       position: relative;
+      display: none; /* Hide the content initially */
     }
     .button {
       background-color: #0c1a36;
@@ -54,21 +55,8 @@
   </style>
 </head>
 <body>
-
-  <!-- Jump scare video -->
-  <video id="jumpscareVideo" autoplay>
-    <source src="videos/jumpscare.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <!-- Background music -->
-  <audio id="bgMusic" loop>
-    <source src="songs/fettywap.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
   <!-- Main content -->
-  <div class="container" id="mainContent" style="display:none;">
+  <div class="container" id="mainContent">
     <h1>Upload Successful!</h1>
     <p>Your dataset has been successfully uploaded.</p>
     <p>Thank you for contributing to the community!</p>
@@ -76,25 +64,15 @@
   </div>
 
   <script>
-    const video = document.getElementById('jumpscareVideo');
-    const music = document.getElementById('bgMusic');
-    const content = document.getElementById('mainContent');
-
-    // Show video, then hide it after playback
-    window.addEventListener('load', () => {
-      video.style.display = 'block';
-      video.play();
-
-      video.onended = () => {
-        video.style.display = 'none';
-        content.style.display = 'block';
-        music.play();
-      };
-    });
+    // Display the main content after the page loads
+    window.onload = function() {
+      document.getElementById('mainContent').style.display = 'block';
+    };
   </script>
 
 </body>
 </html>
+
 
 <!--<!DOCTYPE html>
 <html lang="en">
