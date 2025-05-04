@@ -307,7 +307,7 @@ $sources_count = $row_sources['unique_sources']; // Store the unique sources cou
     </video>
     <header class="navbar">
         <div class="logo">
-            <img src="public/images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
+            <img src="/images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
         </div>
 
         <nav class="nav-links">
