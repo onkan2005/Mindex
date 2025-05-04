@@ -5,14 +5,14 @@
       }
     },
     "routes": [
-    {
+      {
         "src": "/api/index.php",
         "dest": "/api/index.php"
-    },
-    { 
+      },
+      { 
         "src": "/(.*)", 
         "dest": "/api/index.php" 
-     }
+      }
     ],
     "env": {
       "PG_HOST": "ep-raspy-river-a4xechry-pooler.us-east-1.aws.neon.tech",
@@ -21,6 +21,9 @@
       "PG_USER": "neondb_owner",
       "PG_PASSWORD": "npg_CBUOaK5NVoF1",
       "PG_ENDPOINT": "ep-raspy-river-a4xechry-pooler"
+    },
+    "engines": {
+      "node": "18.x"
     }
   }
   
