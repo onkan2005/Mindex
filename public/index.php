@@ -303,11 +303,11 @@ $sources_count = $row_sources['unique_sources']; // Store the unique sources cou
 </head>
 <body>
     <video autoplay muted loop id="background-video">
-        <source src="videos/background4.mp4" type="video/mp4">
+        <source src="public/videos/background4.mp4" type="video/mp4">
     </video>
     <header class="navbar">
         <div class="logo">
-            <img src="images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
+            <img src="public/images/mdx_logo.png" alt="Mangasay Data Exchange Logo">
         </div>
 
         <nav class="nav-links">

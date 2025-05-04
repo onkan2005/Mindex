@@ -16,6 +16,10 @@
       {
         "src": "/images/(.*).png", 
         "dest": "/public/images/$1"
+      },
+      {
+        "src": "/vidoes/(.*).mp4", 
+        "dest": "/public/videos/$1"
       }
     ],
     "env": {
