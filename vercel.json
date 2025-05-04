@@ -17,10 +17,17 @@
       },
       "api/category_modal.php": {
         "runtime": "vercel-php@0.7.3"
+      },
+      "api/db_connection.php": {
+        "runtime": "vercel-php@0.7.3"
       }
     },
     "routes": [
-    {
+      {
+        "src": "/db_connection.php",
+        "dest": "/api/db_connection.php"
+      },
+      {
         "src": "/sidebar.php",
         "dest": "/api/sidebar.php"
       },
