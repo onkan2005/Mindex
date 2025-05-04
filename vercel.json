@@ -9,7 +9,7 @@
       "api/login_api.php": {
         "runtime": "vercel-php@0.7.3"
       },
-      "api/homelogin.php": {
+      "api/HomeLogin.php": {
         "runtime": "vercel-php@0.7.3"
       }
     },
