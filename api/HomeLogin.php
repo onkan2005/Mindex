@@ -230,7 +230,6 @@ $sources_count = $row_sources['unique_sources'];
         background-color: #a0b6f3; /* Darker blue when hovered */
         transform: scale(1.1); /* Slightly increase size on hover */
     }
-    
     .upload-btn p {
         font-size: 16px;
         color: black;
@@ -269,6 +268,9 @@ $sources_count = $row_sources['unique_sources'];
         h1 {
             font-size: 40px;
         }
+    }
+    #category-btn{
+        display: none;
     }
     .nav-links {
         display: flex;
@@ -329,7 +331,7 @@ $sources_count = $row_sources['unique_sources'];
             <nav class="nav-links">
                 <a href="HomeLogin.php">HOME</a>
                 <a href="datasets.php">DATASETS</a>
-                <a id="category-btn" style="display: none;" onclick="showModal()" style="cursor: pointer;">CATEGORY</a>
+                <a id="category-btn" onclick="showModal()" style="cursor: pointer;">CATEGORY</a>
                 <div class="profile-icon">
                 <img src="https://www.dropbox.com/scl/fi/qluw1qll9bauz91379zhl/avatarIconunknown.jpg?rlkey=jhrxtz3pl41wsfayiwce6gqtl&st=72avrw3j&raw=1" alt="Profile">
             </div>
@@ -343,6 +345,9 @@ $sources_count = $row_sources['unique_sources'];
             function hideModal() {
                 document.getElementById("categoryModal").style.display = "none";
             }
+            document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("categoryModal").style.display = "none";
+        });
     </script>
         <main class="wrapper">
             <h1>Mangasay <br> Data Exchange </h1>
