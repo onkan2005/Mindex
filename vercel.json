@@ -15,11 +15,12 @@
      }
     ],
     "env": {
-      "PG_HOST": "your-database-host",
+      "PG_HOST": "ep-raspy-river-a4xechry-pooler.us-east-1.aws.neon.tech",
       "PG_PORT": "5432",
-      "PG_DB": "your-db-name",
-      "PG_USER": "your-db-user",
-      "PG_PASSWORD": "your-db-password"
+      "PG_DB": "neondb",
+      "PG_USER": "neondb_owner",
+      "PG_PASSWORD": "npg_CBUOaK5NVoF1",
+      "PG_ENDPOINT": "ep-raspy-river-a4xechry-pooler"
     }
   }
   
