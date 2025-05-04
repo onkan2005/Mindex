@@ -36,7 +36,7 @@
       "api/form-handler.php": {
         "runtime": "vercel-php@0.7.3"
       },
-      "api/data_success.php": {
+      "api/dataset_success.php": {
         "runtime": "vercel-php@0.7.3"
       },
       "api/mydataset.php": {
@@ -70,7 +70,7 @@
         "dest": "/api/mydataset.php"
       },
       {
-        "src": "/data_success.php",
+        "src": "/dataset_success.php",
         "dest": "/api/data_success.php"
       },
       {
