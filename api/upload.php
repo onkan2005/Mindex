@@ -58,7 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             fclose($fp);
 
             if ($response === false) {
-                return ['error' => $error];
+                $_SESSION['error_message'] = "Error uploading file: " . $error;
+                header("Location: uploadselection.php");
+                exit();
             }
 
             return json_decode($response, true);
