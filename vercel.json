@@ -14,7 +14,7 @@
       "PG_DB": "neondb",
       "PG_USER": "neondb_owner",
       "PG_PASSWORD": "npg_CBUOaK5NVoF1",
-      "PG_SSL": "require"
+      "PG_ENDPOINT": "ep-raspy-river-a4xechry-pooler"
     }
   }
   
